@@ -138,7 +138,7 @@ Follow these steps to set up the monitoring system.
       GROUP_CHAT_ID = '<TELEGRAM GROUP ID>'
 
       # [Rest of the monitor.py content...]
-    ```
+      ```
 3. Save the changes.
 4. Make the script executable:
     ```bash
