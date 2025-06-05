@@ -27,7 +27,6 @@ This project monitors internet connectivity using two main scripts on a Raspberr
 
 - Raspberry Pi running Raspberry Pi OS (32-bit or 64-bit)
 - **Python 3**: Ensure Python 3 is installed on your Raspberry Pi.
-- **Pip**: Make sure pip is installed (`sudo apt-get install python3-pip`).
 - Active internet connection
 - Terminal access (SSH or direct)
 
