@@ -2,7 +2,7 @@ import socket
 
 # Server configuration
 HOST = '0.0.0.0'  # Listen on all available network interfaces
-PORT = 5900       # Port to listen on
+PORT = <PORT>       # Port to listen on
 
 # Create TCP socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
