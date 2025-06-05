@@ -1,1 +1,1 @@
-# raspbian-internet-monitoring
+# rpi-internet-monitoring
