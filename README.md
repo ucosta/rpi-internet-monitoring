@@ -371,11 +371,3 @@ cat duck.log
     - Verify Python virtual environment is properly set up
     - Examine logs: `journalctl -u service-name.service`
 
----
-
-**Spelling corrections and platform compatibility information have been added as requested.**[^1]
-
-<div style="text-align: center">⁂</div>
-
-[^1]: paste.txt
-
