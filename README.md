@@ -10,6 +10,7 @@ These services can be ported to any Linux, macOS, or Windows operating system as
 
 1. [Scripts Overview](#scripts-overview)
 2. [Pre-reqs](#pre-reqs)
+3. [Architeture](#architeture)
 3. [Initial Setup](#initial-setup)
 
 4. [DuckDNS Configuration](#duckdns-configuration)
@@ -39,6 +40,65 @@ These services can be ported to any Linux, macOS, or Windows operating system as
 - Active internet connection
 - Terminal access (SSH, command prompt, or direct)
 
+# Architeture <a name="architeture"></a>
+Here's a Mermaid diagram showing the system architecture (compatible with Markdown viewers that support Mermaid):
+
+```mermaid
+%%{init: {'theme': 'neutral'}}%%
+graph TD
+    A[User Device] -->|SSH/CLI| B[Raspberry Pi/PC]
+    subgraph Local System
+        B --> C[Scripts]
+        C --> C1(monitor.py)
+        C --> C2(server.py)
+        C --> C3(duck.sh)
+        C1 -->|Checks| D[Internet Connectivity]
+        C2 -->|Listens on| E[Port 5900]
+        C3 -->|Updates| F[DuckDNS]
+    end
+
+    subgraph External Services
+        D -->|Ping Test| G[8.8.8.8]
+        C1 -->|Sends Alerts| H[Gmail SMTP]
+        C1 -->|Sends Messages| I[Telegram API]
+        F -->|DNS Updates| J[DuckDNS Servers]
+        E -->|HTTP Response| K[Monitoring Tools]
+    end
+
+    style B fill:#c0ffc0,stroke:#333
+    style C fill:#e6f3ff,stroke:#333
+    style G fill:#ffe6e6,stroke:#333
+    style H fill:#ffe6e6,stroke:#333
+    style I fill:#ffe6e6,stroke:#333
+    style J fill:#ffe6e6,stroke:#333
+    style K fill:#ffe6e6,stroke:#333
+```
+
+**Architecture Explanation:**
+
+1. **Core Components (Green):**
+    - Raspberry Pi/PC acts as the central hub
+    - Runs three main scripts in Python/Bash
+2. **Monitoring System (Blue):**
+    - `monitor.py`: Active checker with dual alerting
+    - `server.py`: Passive HTTP endpoint for verification
+    - `duck.sh`: DNS maintenance utility
+3. **External Dependencies (Red):**
+    - **Google DNS (8.8.8.8):** Primary connectivity check
+    - **Gmail SMTP:** Email notification channel
+    - **Telegram API:** Instant messaging alerts
+    - **DuckDNS:** Dynamic DNS updater
+    - **Monitoring Tools:** Optional external observers
+
+**Data Flow:**
+
+1. Continuous internet checks (every 60s)
+2. Bi-directional communication with cloud services
+3. Automated DNS updates (every 5m)
+4. Multi-channel alert system activation
+5. Passive HTTP health checks
+
+Would you like me to create a more detailed sequence diagram showing the exact workflow between components?
 
 # Initial Setup <a name="initial-setup"></a>
 
